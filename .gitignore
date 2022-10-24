@@ -1,3 +1,5 @@
 /backup
 *.mp4
 *.mp3
+*venv
+*__pycache__
