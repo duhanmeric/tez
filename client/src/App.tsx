@@ -5,7 +5,8 @@ import { SbButton, SbContainer } from "components";
 function App() {
   return (
     <ChakraProvider>
-      <SbContainer>jpomk</SbContainer>
+      <SbContainer></SbContainer>
+      <SbButton title="Reset" variant="outline" />
     </ChakraProvider>
   );
 }
