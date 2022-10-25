@@ -16,6 +16,7 @@ const SbContainer: FC<PropsWithChildren<SbContainerType>> = (props) => {
       height={400}
       width="100%"
       maxWidth="unset"
+      {...props}
     >
       {props.children}
     </Container>
