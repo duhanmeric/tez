@@ -1,12 +1,11 @@
 import React from "react";
-import { ChakraProvider, Box, Text } from "@chakra-ui/react";
-import { SbButton, SbContainer } from "components";
+import { ChakraProvider } from "@chakra-ui/react";
+import { UploadScreen } from "screens";
 
 function App() {
   return (
     <ChakraProvider>
-      <SbContainer></SbContainer>
-      <SbButton title="Reset" variant="outline" />
+      <UploadScreen />
     </ChakraProvider>
   );
 }

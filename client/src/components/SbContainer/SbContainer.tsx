@@ -1,9 +1,11 @@
-import { Container } from "@chakra-ui/react";
+import { Container, ContainerProps } from "@chakra-ui/react";
 import React, { FC, PropsWithChildren } from "react";
 
 type SbContainerType = {};
 
-const SbContainer: FC<PropsWithChildren<SbContainerType>> = (props) => {
+const SbContainer: FC<PropsWithChildren<SbContainerType> & ContainerProps> = (
+  props
+) => {
   return (
     <Container
       boxShadow="md"
