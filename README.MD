@@ -17,6 +17,12 @@ Media files will be here soon...
 4. Projeyi çalıştırmak için -> `flask --app main run`
 5. Virtual environment'ı kapatmak için -> `deactivate`
 
+### WINDOWS için
+
+`py -3 -m venv venv`
+`venv/Scripts/activate`
+`flask --app main run`
+
 ## Frontcular için
 
 1. Projeyi clone'la.
