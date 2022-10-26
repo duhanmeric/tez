@@ -1,8 +1,7 @@
 import os
 from flask import Flask
-import uuid 
+import uuid
 import flask
-from controllers.video_controller import main
 
 from utils.get_save_folders import get_save_folders
 
@@ -19,7 +18,6 @@ def hello_world():
         LAST_VIDEO_PATH = os.path.join(get_save_folders(
             "tmp_videos"), unique_filename + file_extension)
         file.save(LAST_VIDEO_PATH)
-        main(LAST_VIDEO_PATH, unique_filename, file_extension)
 
     return unique_filename
 
