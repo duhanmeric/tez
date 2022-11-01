@@ -2,21 +2,18 @@ import { useEffect, useState } from "react";
 import { Box, Center, Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { SbButton, SbContainer, SbFileItem, SbFileUpload } from "components";
 import { useUploadFile } from "hooks";
-import EmptyBox from "@/assets/empty-box.png";
 import api from "api";
-import { Axios, AxiosError } from "axios";
+import { AxiosError } from "axios";
 
 const Upload = () => {
   const {
     files,
     inputRef,
-    fileResponse,
     data,
     openFilePicker,
     onFileChange,
     removeFile,
     checkIfFileExist,
-    resetFile,
   } = useUploadFile();
 
   const [apiResponse, setApiResponse] = useState<any>("");
@@ -35,11 +32,13 @@ const Upload = () => {
           },
         });
 
-        setApiResponse(res.data);
+        console.log(res);
 
-        const link = document.createElement("a");
-        link.href = `http://127.0.0.1:5000/download/${res.data}`;
-        link.click();
+        // setApiResponse(res.data);
+
+        // const link = document.createElement("a");
+        // link.href = `http://127.0.0.1:5000/download/${res.data}`;
+        // link.click();
       } catch (error) {
         const err = error as AxiosError;
         setError(err.message);
@@ -49,22 +48,6 @@ const Upload = () => {
     }
   };
 
-  const deleteRequestedFile = async () => {
-    try {
-      const res = await api().delete(`/delete-zip/${apiResponse}`, {
-        data: { zipId: apiResponse },
-      });
-      console.log(res.data);
-    } catch (error) {
-      const err = error as AxiosError;
-    }
-  };
-
-  useEffect(() => {
-    if (apiResponse) {
-      deleteRequestedFile();
-    }
-  }, [apiResponse]);
   return (
     <Center minHeight="100vh">
       <Flex direction="column" w={[300, 400, 600]}>
@@ -88,12 +71,17 @@ const Upload = () => {
                 </Center>
               )}
             </Box>
-            <SbFileUpload label="browse" />
+            <SbFileUpload
+              inputRef={inputRef}
+              label="browse"
+              onChange={onFileChange}
+              onClick={openFilePicker}
+            />
           </VStack>
         </SbContainer>
         <HStack justify="space-between">
-          <SbButton title="Reset" variant="outline" />
-          <SbButton title="Upload" variant="solid" />
+          {/* <SbButton title="Reset" variant="outline" /> */}
+          <SbButton title="Upload" variant="solid" onClick={makeRequest} />
         </HStack>
       </Flex>
     </Center>

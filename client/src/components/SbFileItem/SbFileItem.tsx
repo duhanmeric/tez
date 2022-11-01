@@ -21,7 +21,7 @@ const SbFileItem = (props: Props) => {
     <Box mb={5}>
       <HStack justify="center">
         <Box mr={3}>
-          <Image boxSize="55px" src={VideoFileImage} alt="Dan Abramov" />
+          <Image boxSize="55px" src={VideoFileImage} alt="bix" />
         </Box>
         <VStack flex={1}>
           <HStack justify="space-between" width="100%">

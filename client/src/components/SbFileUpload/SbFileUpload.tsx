@@ -3,7 +3,9 @@ import SbButton from "components/SbButton/SbButton";
 import React, { FC } from "react";
 
 type SbFileInputProps = {
-  //   inputRef: React.RefObject<HTMLInputElement>;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick: () => void;
+  inputRef: React.RefObject<HTMLInputElement>;
   label: string;
 };
 
@@ -21,14 +23,15 @@ const SbFileUpload: FC<SbFileInputProps> = (props) => {
       <Text lineHeight={2} color="gray.500">
         Drag your files here or
       </Text>
-      <SbButton variant="link" title={props.label} />
+      <SbButton variant="link" title={props.label} onClick={props.onClick} />
       <input
         multiple
         accept="video/*"
-        // ref={props.inputRef}
+        ref={props.inputRef}
         style={{ display: "none" }}
         type="file"
         id="file-upload"
+        onChange={props.onChange}
       />
     </Box>
   );
