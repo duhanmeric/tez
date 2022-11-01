@@ -33,12 +33,6 @@ const Upload = () => {
         });
 
         console.log(res);
-
-        // setApiResponse(res.data);
-
-        // const link = document.createElement("a");
-        // link.href = `http://127.0.0.1:5000/download/${res.data}`;
-        // link.click();
       } catch (error) {
         const err = error as AxiosError;
         setError(err.message);
