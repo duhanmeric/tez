@@ -29,6 +29,8 @@ const Upload = () => {
         const res = await api().post("/", data, {
           headers: {
             "Content-type": "multipart/form-data",
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
           },
         });
 

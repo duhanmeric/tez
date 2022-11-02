@@ -1,15 +1,29 @@
 import os
 from flask import Flask
+from flask import Flask, send_file
+from flask_cors import CORS
 import uuid
 import flask
 
+# from utils.zip_file import zipFiles
 from utils.get_save_folders import get_save_folders
+from controllers.video_controller import main
+
 
 app = Flask(__name__)
+app.config.from_object(__name__)
+app.config['UPLOAD_FOLDER'] = get_save_folders("tmp_videos")
+
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
-@app.route("/")
-def hello_world():
+@app.route("/",methods=["GET"])
+def Home():
+    return True
+
+@app.route("/", methods=["POST"])
+@app.route("/Index", methods=["POST"])
+def Index():
     files = flask.request.files.getlist("file")
 
     for file in files:
@@ -18,6 +32,7 @@ def hello_world():
         LAST_VIDEO_PATH = os.path.join(get_save_folders(
             "tmp_videos"), unique_filename + file_extension)
         file.save(LAST_VIDEO_PATH)
+        # main(LAST_VIDEO_PATH, unique_filename, file_extension)
 
     return unique_filename
 
