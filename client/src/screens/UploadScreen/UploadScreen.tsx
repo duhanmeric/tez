@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box, Center, Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { SbButton, SbContainer, SbFileItem, SbFileUpload } from "components";
 import { useUploadFile } from "hooks";
@@ -26,11 +26,9 @@ const Upload = () => {
       try {
         setLoading(true);
 
-        const res = await api().post("/", data, {
+        const res = await api().post("/upload-file", data, {
           headers: {
-            "Content-type": "multipart/form-data",
-            'Access-Control-Allow-Origin' : '*',
-            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
+            enctype: "multipart/form-data",
           },
         });
 
