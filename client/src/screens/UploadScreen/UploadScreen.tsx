@@ -68,7 +68,7 @@ const Upload = () => {
             </Box>
             <SbFileUpload
               inputRef={inputRef}
-              label="browse"
+              label="Browse"
               onChange={onFileChange}
               onClick={openFilePicker}
             />

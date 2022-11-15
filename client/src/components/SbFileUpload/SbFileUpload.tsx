@@ -1,6 +1,6 @@
-import { Box, Text } from "@chakra-ui/react";
-import SbButton from "components/SbButton/SbButton";
 import React, { FC } from "react";
+import { Box, Input } from "@chakra-ui/react";
+import SbButton from "components/SbButton/SbButton";
 
 type SbFileInputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -17,14 +17,11 @@ const SbFileUpload: FC<SbFileInputProps> = (props) => {
       borderColor="gray.300"
       width="100%"
       rounded="md"
-      borderStyle="dashed"
+      borderStyle="solid"
       py={7}
     >
-      <Text lineHeight={2} color="gray.500">
-        Drag your files here or
-      </Text>
       <SbButton variant="link" title={props.label} onClick={props.onClick} />
-      <input
+      <Input
         multiple
         accept="video/*"
         ref={props.inputRef}
