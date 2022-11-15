@@ -1,15 +1,17 @@
-from utils.get_save_folders import get_save_folders
-from moviepy.editor import *
 import codecs
+from moviepy.editor import *
+from controllers.register_audio import registerAudio
+from utils.get_save_folders import get_save_folders
 import os
 
 
 def main(last_video_path, filename, video_extension):
+    videoClip = VideoFileClip(last_video_path)
 
-    print("deneme")
-    # videoClip = VideoFileClip(last_video_path)
+    getAudioPath = registerAudio(filename)
+    audioClip = videoClip.audio
+    audioClip.write_audiofile(getAudioPath)
 
-    # video = CompositeVideoClip()
-    # video.write_videofile(os.path.join(get_save_folders(
-    #     "outputs"), f"{filename+video_extension}"), logger=None)
-    # video.close()
+ 
+    audioClip.close()
+    videoClip.close()
