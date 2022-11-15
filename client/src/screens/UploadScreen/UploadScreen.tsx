@@ -1,6 +1,20 @@
 import { useState } from "react";
-import { Box, Center, Flex, HStack, Text, VStack } from "@chakra-ui/react";
-import { SbButton, SbContainer, SbFileItem, SbFileUpload } from "components";
+import {
+  Box,
+  Center,
+  Flex,
+  HStack,
+  Progress,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import {
+  SbButton,
+  SbContainer,
+  SbError,
+  SbFileItem,
+  SbFileUpload,
+} from "components";
 import { useUploadFile } from "hooks";
 import api from "api";
 import { AxiosError } from "axios";
@@ -9,6 +23,7 @@ const Upload = () => {
   const {
     files,
     inputRef,
+    fileResponse,
     data,
     openFilePicker,
     onFileChange,
@@ -49,6 +64,11 @@ const Upload = () => {
         <Text fontSize="4xl" fontWeight="semibold" textAlign="center">
           Select your files
         </Text>
+        {loading && <Progress mt={2} size="xs" isIndeterminate />}
+        {fileResponse?.type === "error" && (
+          <SbError message={fileResponse.message} />
+        )}
+        {error && <SbError message={error} />}
         <SbContainer my={5}>
           <VStack height="100%" px={5} justify="space-between">
             <Box width="100%" height="100%" mt={1} flex={1} overflowY="auto">
