@@ -14,6 +14,7 @@ const Upload = () => {
     onFileChange,
     removeFile,
     checkIfFileExist,
+    resetFile,
   } = useUploadFile();
 
   const [apiResponse, setApiResponse] = useState<any>("");
@@ -74,7 +75,7 @@ const Upload = () => {
           </VStack>
         </SbContainer>
         <HStack justify="space-between">
-          {/* <SbButton title="Reset" variant="outline" /> */}
+          <SbButton title="Reset" variant="outline" onClick={resetFile} />
           <SbButton title="Upload" variant="solid" onClick={makeRequest} />
         </HStack>
       </Flex>
