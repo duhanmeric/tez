@@ -14,7 +14,7 @@ Media files will be here soon...
    - `python3 -m venv venv`
    - `. venv/bin/activate`
    - `pip install -r requirements.txt`
-4. Projeyi çalıştırmak için -> `flask --app main run`
+4. Projeyi çalıştırmak için -> `flask --app main --debug run`
 5. Virtual environment'ı kapatmak için -> `deactivate`
 
 ### WINDOWS için

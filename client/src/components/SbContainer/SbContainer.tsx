@@ -3,6 +3,8 @@ import React, { FC, PropsWithChildren } from "react";
 
 type SbContainerType = {};
 
+// @RenderBody .NET
+
 const SbContainer: FC<PropsWithChildren<SbContainerType> & ContainerProps> = (
   props
 ) => {

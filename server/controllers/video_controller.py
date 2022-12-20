@@ -1,6 +1,8 @@
 import codecs
 from moviepy.editor import *
 from controllers.register_audio import registerAudio
+from controllers.insert_text_clip import insertTextClip
+from controllers.speech_to_text import speechToText
 from utils.get_save_folders import get_save_folders
 import os
 
@@ -8,16 +10,23 @@ import os
 def main(last_video_path, filename, video_extension):
     videoClip = VideoFileClip(last_video_path)
 
-    # tmp_videos path'inden mp3 dosyası olusturma
     getAudioPath = registerAudio(filename)
-    audioClip = videoClip.audio
-    audioClip.write_audiofile(getAudioPath)
+    videoClip.audio.write_audiofile(getAudioPath)
 
-    # ilerde videoya entegre ilerde basilacak kelimeler simdilik bos
+    # words = speechToText(getAudioPath)
     words = []
 
-    # uzerine kelimeler eklenmis video dosyası ve ileride ziplenecek dosya
-    # outputs'a kaydediliyor
-    videoClip.write_videofile(os.path.join(get_save_folders(
-        "outputs"), f"{filename+video_extension}"), logger=None)
-    videoClip.close()
+    videoLayers = insertTextClip(words)
+    videoLayers.insert(0, videoClip)
+
+    video = CompositeVideoClip(clips=videoLayers)
+    # video.write_videofile(os.path.join(get_save_folders(
+    #     "outputs"), f"{filename+video_extension}"), logger=None)
+    video.write_videofile(os.path.join(get_save_folders(
+        "outputs"), f"{filename+video_extension}"),
+        codec='libx264',
+        audio_codec='aac',
+        # temp_audiofile='temp-audio.m4a',
+        # remove_temp=True
+    )
+    video.close()

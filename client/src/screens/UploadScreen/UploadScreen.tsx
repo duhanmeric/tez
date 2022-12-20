@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Box,
   Center,
@@ -42,13 +42,17 @@ const Upload = () => {
       try {
         setLoading(true);
 
-        const res = await api().post("/upload-file", data, {
+        const res = await api().post("/", data, {
           headers: {
             enctype: "multipart/form-data",
           },
         });
 
-        console.log(res);
+        setApiResponse(res.data);
+
+        const link = document.createElement("a");
+        link.href = `http://127.0.0.1:5000/download/${res.data}`;
+        link.click();
       } catch (error) {
         const err = error as AxiosError;
         setError(err.message);
@@ -58,8 +62,28 @@ const Upload = () => {
     }
   };
 
+  const deleteRequestedFile = useCallback(async () => {
+    try {
+      const res = await api().delete(`/delete-zip/${apiResponse}`, {
+        data: { zipId: apiResponse },
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [apiResponse]);
+
+  useEffect(() => {
+    if (apiResponse) {
+      deleteRequestedFile();
+    }
+  }, [apiResponse, deleteRequestedFile]);
+
   return (
     <Center minHeight="100vh">
+      <Box position="absolute" bottom={0} left={0}>
+        Version: 1.0.0
+      </Box>
       <Flex direction="column" w={[300, 400, 600]}>
         <Text fontSize="4xl" fontWeight="semibold" textAlign="center">
           Select your files
@@ -88,7 +112,7 @@ const Upload = () => {
             </Box>
             <SbFileUpload
               inputRef={inputRef}
-              label="Browse"
+              label="browse"
               onChange={onFileChange}
               onClick={openFilePicker}
             />
