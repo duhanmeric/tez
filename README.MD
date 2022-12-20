@@ -19,6 +19,7 @@ Media files will be here soon...
 
 ### WINDOWS için
 
+`Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted`
 `py -3 -m venv venv`
 `venv/Scripts/activate`
 `flask --app main run`
