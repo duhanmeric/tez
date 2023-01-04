@@ -9,7 +9,7 @@ def insertTextClip(arr):
 
     for textClip in arr:
         print(textClip.text, textClip.start, textClip.end)
-        txt_clip = TextClip(textClip.text.strip(), size=(150, 150), fontsize=48, color='black', font="Dubai-Bold", bg_color="white").set_pos(
+        txt_clip = TextClip(textClip.text.strip(), size=(300, 300), fontsize=42, color='white', font="Dubai-Bold").set_pos(
             ("center", 100)).set_start(textClip.start).set_end(textClip.end)
         videoLayers.append(txt_clip)
 

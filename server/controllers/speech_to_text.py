@@ -1,14 +1,12 @@
 import os
-# from google.cloud import speech
+from google.cloud import speech
 from google.cloud import speech_v1p1beta1 as speech
 
 from models.CustomTextClip import CustomTextClip
 
 
-# client = speech.SpeechClient.from_service_account_file(
-#     os.path.realpath(os.path.join(os.getcwd(), "key.json")))
-
-client = ""
+client = speech.SpeechClient.from_service_account_file(
+    os.path.realpath(os.path.join(os.getcwd(), "key.json")))
 
 alternative_langs = ["tr-TR"]
 

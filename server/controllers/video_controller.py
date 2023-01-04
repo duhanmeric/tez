@@ -13,8 +13,8 @@ def main(last_video_path, filename, video_extension):
     getAudioPath = registerAudio(filename)
     videoClip.audio.write_audiofile(getAudioPath)
 
-    # words = speechToText(getAudioPath)
-    words = []
+    words = speechToText(getAudioPath)
+    # words = []
 
     videoLayers = insertTextClip(words)
     videoLayers.insert(0, videoClip)
